@@ -39,12 +39,12 @@ def create_table(canvas, frame, dictionary):
 def create_gui(dictionary):
 
     root = tk.Tk()
-    root.title("Cuvinte cheie pe site-uri")
+    root.title("Tabel 2 cuvinte cheie ")
 
     button_frame = ttk.Frame(root)
     button_frame.grid(row=0, column=0, sticky=(tk.W, tk.E))
 
-    generate_button = ttk.Button(button_frame, text="Generează Tabel",
+    generate_button = ttk.Button(button_frame, text="Tabel",
                                  command=lambda: create_table(canvas, frame, dictionary))
     generate_button.pack(padx=10, pady=10)
 

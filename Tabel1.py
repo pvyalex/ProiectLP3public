@@ -37,14 +37,14 @@ def afiseaza_tabel():
         a.append(str(i))
 
     tree["columns"] = a
-    # Configurăm coloanele
+
     tree.column("#0", width=100, minwidth=100, anchor=tk.W)
     for col in tree["columns"]:
         tree.column(col, width=100, minwidth=100, anchor=tk.W)
         tree.heading(col, text="Keyword", anchor=tk.W)
     for key, values in dataframe.iterrows():
         tree.insert("", "end", text=key, values=tuple(values))
-    # Adăugăm datele în Treeview
+
     for key, values in dataframe.iterrows():
         tree.insert("", "end", text=key, values=tuple(values))
 
@@ -53,7 +53,7 @@ def afiseaza_tabel():
 
 
 root = tk.Tk()
-root.title("Interfață grafică")
+root.title("interfata grafica")
 root.geometry("600x300")
 
 
@@ -61,7 +61,7 @@ frame_tabel = ttk.Frame(root)
 frame_tabel.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=10, pady=10)
 
 
-button_tabel = ttk.Button(root, text="Afișează tabel", command=afiseaza_tabel)
+button_tabel = ttk.Button(root, text="Tabel", command=afiseaza_tabel)
 button_tabel.pack(side=tk.LEFT, padx=10, pady=10)
 
 
