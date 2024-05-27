@@ -1,0 +1,68 @@
+import tkinter as tk
+from tkinter import ttk
+from PIL import Image, ImageTk
+from wordcloud import WordCloud
+
+
+def afiseaza_wordcloud():
+    wordcloud = WordCloud(width=400, height=400, background_color='white', max_font_size=200, min_font_size=20).generate_from_frequencies(rezultat)
+    wordcloud.to_file("wordcloud.png")
+    image_file = "wordcloud.png"
+    image = Image.open(image_file)
+    image.thumbnail((400, 400))
+    photo = ImageTk.PhotoImage(image)
+    label_wordcloud.configure(image=photo)
+    label_wordcloud.image = photo
+
+root = tk.Tk()
+root.title("WordCloud ")
+root.geometry("800x400")
+
+button_frame = ttk.Frame(root)
+button_frame.grid(row=0, column=0, padx=10, pady=10, sticky="n")
+
+# Frame-ul pentru wordcloud
+wordcloud_frame = ttk.Frame(root, width=400, height=400)
+wordcloud_frame.grid(row=0, column=1, padx=10, pady=10, sticky="n")
+
+# Label-ul pentru wordcloud
+label_wordcloud = ttk.Label(wordcloud_frame)
+label_wordcloud.pack()
+
+frame_tabel = ttk.Frame(root)
+frame_tabel.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+
+rezultat = {
+    'aproximativ': 1, 'biblioteca': 1, 'centrala': 1, 'este': 2, 'evenimente': 3, 'mare': 1, 'multe': 1, 'politehnica': 1, 'stiri': 1, 'universitate': 1,
+    'universitatea': 3, 'build': 1, 'computer': 1, 'education': 1, 'global': 1, 'journal': 1, 'mathematics': 1, 'romanian': 1, 'science': 1,
+    'administrativ': 2, 'administrator': 1, 'admitere': 2, 'arhitect': 1, 'arhiva': 1, 'birou': 1, 'biroul': 1, 'british': 1, 'burse': 1, 'cabinete': 1,
+    'cadrul': 1, 'cercetare': 1, 'concurs': 1, 'conducere': 2, 'conferite': 1, 'conformitate': 1, 'consiliul': 1, 'contact': 2, 'credite': 1,
+    'creditelor': 1, 'decontare': 1, 'departamente': 1, 'didactic': 1, 'diploma': 1, 'diplome': 1, 'diplomele': 1, 'directiva': 1, 'doctorat': 1,
+    'efectuate': 1, 'european': 1, 'examen': 1, 'facultatea': 1, 'finalizare': 1, 'financiar': 1, 'imagine': 1, 'institute': 1, 'interior': 1, 'istoric': 1,
+    'iulie': 1, 'libera': 1, 'managementul': 1, 'medicale': 1, 'metode': 1, 'ocuparea': 1, 'oferite': 1, 'oferta': 1, 'patru': 1, 'pentru': 2,
+    'periodice': 1, 'personal': 1, 'post': 1, 'posturi': 1, 'prestigiu': 1, 'prima': 1, 'publice': 1, 'restante': 1, 'resurse': 1, 'riba': 1, 'senatul': 1,
+    'septembrie': 1, 'serviciului': 1, 'sesiunea': 1, 'sponsori': 1, 'studii': 1, 'studiu': 1, 'sunt': 1, 'suprafata': 1, 'transferabile': 1, 'transport': 1,
+    'uauim': 1, 'umane': 1, 'universitar': 1, 'unui': 2, 'urbanism': 1, 'urmare': 1, 'validate': 1, 'vederea': 1, 'academic': 1, 'acasa': 1, 'admministrativ': 1,
+    'agronomice': 1, 'alte': 1, 'cifre': 1, 'comunitatea': 1, 'cuvinte': 1, 'despre': 1, 'echipa': 1, 'fost': 1, 'frecvent': 1, 'informa': 1, 'limitarea': 1,
+    'martie': 1, 'more': 1, 'mult': 1, 'pagina': 1, 'parcurs': 1, 'perioada': 1, 'publicul': 1, 'read': 1, 'rezultatul': 1, 'site': 1, 'usamv': 1, 'vechiul': 1,
+    'vezi': 1, 'chair': 1, 'development': 1, 'good': 1, 'governance': 1, 'interculturality': 1, 'knowledge': 1, 'power': 1, 'sustainable': 1, 'unesco': 1
+}
+
+wordcloud_displayed = False
+def wordcloud():
+    global wordcloud_displayed
+    if wordcloud_displayed:
+
+        label_wordcloud.configure(image='')
+        label_wordcloud.image = None
+        wordcloud_displayed = False
+    else:
+
+        afiseaza_wordcloud()
+        wordcloud_displayed = True
+
+
+button_generate = ttk.Button(button_frame, text=" WordCloud", command=wordcloud)
+button_generate.pack(pady=10)
+
+root.mainloop()
